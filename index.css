@@ -1,0 +1,73 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.band {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.band:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr;
+    grid-template-areas: 
+        'form'
+        'recommendations';
+}
+
+.main-grid aside {
+    grid-area: recommendations;
+    padding-inline: 2em;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+}
+
+@media(min-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+            'form recommendations';
+    }
+}
+
+.recommendation-list {
+    list-style: none;
+    padding: 0;
+}
+
+.recommendation {
+    padding: 1em;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation.gold {
+    background-image: linear-gradient(45deg, gold, yellow);
+}
+
+.recommendation.silver {
+    background-image: linear-gradient(45deg, silver, white);
+}
+
+.recommendation.bronze {
+    background-image: linear-gradient(45deg, #8b4513, #cd7f32);
+    color: white;
+}
