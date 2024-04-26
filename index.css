@@ -59,6 +59,10 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.recommendation div {
+    gap: 2rem;
+}
+
 .recommendation.gold {
     background-image: linear-gradient(45deg, gold, yellow);
 }

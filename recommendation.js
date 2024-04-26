@@ -1,19 +1,22 @@
-export function getTopKRecommendations(user_votes, band_feats, k) {
-  const user_feats = tf.matMul(user_votes, band_feats);
-  const { indices, values } = user_feats.topk(k);
-  const arr = values.arraySync();
-
-  return tf.tidy(() =>
-    indices.arraySync().map((indices, userIndex) => {
+export function getTopKRecommendations(user_votes, band_feats, k, features) {
+  return tf.tidy(() => {
+    const user_votes_tensor = tf.tensor([user_votes]);
+    const band_feats_tensor = tf.tensor(band_feats);
+    const user_feats = tf.matMul(user_votes_tensor, band_feats_tensor);
+    const { indices, values } = user_feats.topk(k);
+    const arr = values.arraySync();
+    return indices.arraySync().map((indices, userIndex) => {
+      console.log("indices: ", indices);
+      console.log("values: ", arr);
       return {
-        user: users[userIndex],
-        recommendations: indices.map((index) => {
+        user: "Yo",
+        recommendations: indices.map((index, i) => {
           return {
             feature: features[index],
-            value: arr[userIndex][index],
+            value: arr[userIndex][i],
           };
         }),
       };
-    })
-  );
+    });
+  });
 }
